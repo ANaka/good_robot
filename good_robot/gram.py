@@ -374,11 +374,11 @@ class RadiusModBezierChordFactory(ChordFactory):
 # Cell
 class Turtle(LineFactory):
 
-    def __init__(self, x=0, y=0, rad=0):
+    def __init__(self, x=0, y=0, rad=0, pen='up'):
         self.x = x
         self.y = y
         self.rad = rad
-        self.pen = 'up'
+        self.pen = pen
         super().__init__()
 
     @property
@@ -435,3 +435,6 @@ class Turtle(LineFactory):
         for n in range(n_eval_points):
             self.forward(forward_d)
             self.turn(d_angle, use_degrees=use_degrees)
+
+    def split(self):
+        return self.__class__(x=self.x, y=self.y, rad=self.rad, pen=self.pen)
